@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kollman's Engineering Consulting - ISO 9001 & IATF 16949 Quality Management Systems, Engineered Retainers, Fasteners & Fastening Systems">
+    <meta name="theme-color" content="#1f2937">
+    <title>Kollman's Engineering Consulting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --light: #f8fafc;
+            --dark: #1f2937;
+            --border: #e2e8f0;
+            --text: #334155;
+            --text-light: #64748b;
+        }
+
+        body.dark-mode {
+            --light: #0f172a;
+            --dark: #f8fafc;
+            --border: #334155;
+            --text: #e2e8f0;
+            --text-light: #cbd5e1;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode header {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--text);
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .dark-mode-toggle:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        main {
+            margin-top: 60px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #2563eb;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .quality-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        body.dark-mode .quality-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .quality-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        body.dark-mode .quality-card {
+            background: #1f2937;
+            border-left-color: #60a5fa;
+        }
+
+        .quality-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .quality-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .products-section {
+            background: var(--light);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-item {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        body.dark-mode .product-item {
+            background: #1f2937;
+        }
+
+        .product-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .product-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-section .section-title {
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p {
+            opacity: 0.9;
+        }
+
+        .contact-item a {
+            color: #60a5fa;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.7;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .hero {
+                padding: 4rem 1rem;
+                min-height: 400px;
+            }
+
+            .quality-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="8" width="8" height="16" rx="2" fill="#2563eb"/>
+                    <rect x="14" y="4" width="8" height="20" rx="2" fill="#2563eb"/>
+                    <rect x="24" y="10" width="4" height="14" rx="2" fill="#2563eb"/>
+                </svg>
+                Kollman's
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#quality">Quality</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <svg class="hero-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:white;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#e0e7ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="url(#heroGradient)" stroke="white" stroke-width="2"/>
+                    <g transform="translate(50, 50)">
+                        <rect x="-15" y="-8" width="12" height="16" rx="1.5" fill="#2563eb"/>
+                        <rect x="-2" y="-12" width="12" height="20" rx="1.5" fill="#2563eb"/>
+                        <rect x="11" y="-5" width="6" height="14" rx="1.5" fill="#2563eb"/>
+                    </g>
+                </svg>
+                <h1>Kollman's Engineering Consulting</h1>
+                <p>ISO 9001 & IATF 16949 Quality Management Systems | Engineered Solutions for Automotive & Industrial Markets</p>
+                <a href="#contact" class="cta-button">Get In Touch</a>
+            </div>
+        </section>
+
+        <section id="services" class="scroll-reveal">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive consulting and engineered solutions for quality and production</p>
+            <div class="services-grid">
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">📋</div>
+                    <h3>ISO 9001 Consulting</h3>
+                    <p>Implementation, audit preparation, and ongoing support for ISO 9001 Quality Management Systems compliance and certification.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">🔧</div>
+                    <h3>IATF 16949 Consulting</h3>
+                    <p>Automotive-focused quality management system implementation, audit readiness, and continuous improvement for IATF 16949 compliance.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">💼</div>
+                    <h3>Engineered Retainers</h3>
+                    <p>Custom and standard retainer design and supply for fastening applications in automotive, aerospace, and industrial sectors.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Fasteners & Systems</h3>
+                    <p>Complete fastening solutions including engineering support, sourcing, and supply chain optimization for high-reliability applications.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">🎯</div>
+                    <h3>Engineered Retainers</h3>
+                    <p>Specialized fastening components designed and supplied for demanding automotive and industrial applications requiring precision and durability.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">🏭</div>
+                    <h3>Quality Retainers</h3>
+                    <p>Production-grade retainers and fastening systems with full traceability, testing, and documentation for regulated industries.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quality" class="scroll-reveal">
+            <h2 class="section-title">Quality Management Systems</h2>
+            <p class="section-subtitle">Industry-standard certification and ongoing support</p>
+            <div class="quality-section scroll-reveal">
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Why Choose Our Consulting?</h3>
+                <div class="quality-grid">
+                    <div class="quality-card">
+                        <h4>ISO 9001 Expertise</h4>
+                        <p>Proven experience guiding companies through ISO 9001 implementation, internal audits, and management review cycles to maintain certification and continuous improvement.</p>
+                    </div>
+                    <div class="quality-card">
+                        <h4>IATF 16949 Specialization</h4>
+                        <p>Dedicated automotive quality system knowledge covering IATF 16949 requirements, FMEA/DFMEA, advanced planning, and production-part approval processes.</p>
+                    </div>
+                    <div class="quality-card">
+                        <h4>Integrated Approach</h4>
+                        <p>Seamless coordination between quality systems consulting and engineered product supply, ensuring alignment across certification, design, and production.</p>
+                    </div>
+                    <div class="quality-card">
+                        <h4>Scalable Support</h4>
+                        <p>Flexible retainer packages for ongoing support, training, and audit readiness that grow with your organization's needs and regulatory demands.</p>
+                    </div>
+                    <div class="quality-card">
+                        <h4>Documentation & Compliance</h4>
+                        <p>Comprehensive documentation, procedure development, and compliance verification to meet audit standards and customer requirements.</p>
+                    </div>
+                    <div class="quality-card">
+                        <h4>Industry Experience</h4>
+                        <p>Deep knowledge of automotive, industrial, and manufacturing sectors with proven success supporting suppliers and OEMs alike.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="scroll-reveal">
+            <h2 class="section-title">Engineered Products</h2>
+            <p class="section-subtitle">High-quality fasteners and fastening systems for demanding applications</p>
+            <div class="product-grid">
+                <div class="product-item scroll-reveal">
+                    <div class="product-icon">🔩</div>
+                    <h4>Automotive Retainers</h4>
+                    <p>Precision-engineered retainers for automotive assembly, meeting OEM and IATF 16949 specifications with full material traceability.</p>
+                </div>
+                <div class="product-item scroll-reveal">
+                    <div class="product-icon">🏭</div>
+                    <h4>Industrial Fasteners</h4>
+                    <p>Engineered fastening systems for industrial equipment and machinery, designed for reliability, corrosion resistance, and vibration resistance.</p>
+                </div>
+                <div class="product-item scroll-reveal">
+                    <div class="product-icon">⚡</div>
+                    <h4>Custom Fastening Solutions</h4>
+                    <p>Bespoke retainer and fastening system design to meet unique customer requirements, applications, and performance specifications.</p>
+                </div>
+                <div class="product-item scroll-reveal">
+                    <div class="product-icon">📦</div>
+                    <h4>Supply Chain Support</h4>
+                    <p>End-to-end fastener sourcing, quality verification, and logistics support to streamline your procurement and reduce supply chain risk.</p>
+                </div>
+                <div class="product-item scroll-reveal">
+                    <div class="product-icon">🧪</div>
+                    <h4>Testing & Certification</h4>
+                    <p>Material testing, performance verification, and certification support for fasteners and retainers to meet customer and regulatory standards.</p>
+                </div>
+                <div class="product-item scroll-reveal">
+                    <div class="product-icon">🎯</div>
+                    <h4>Quality Assurance</h4>
+                    <p>Full traceability, documentation, and quality control for all engineered products with documentation supporting ISO 9001 and IATF 16949 compliance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section scroll-reveal">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">Ready to improve your quality systems or source engineered solutions?</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>📧 Email</h4>
+                    <p><a href="mailto:kollmansengineering@gmail.com">kollmansengineering@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h4>📞 Phone</h4>
+                    <p><a href="tel:+12487970226">(248) 797-0226</a></p>
+                </div>
+                <div class="contact-item">
+                    <h4>📍 Location</h4>
+                    <p>Michigan, USA</p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.8;">Let's discuss how we can support your quality certification and engineered fastening needs.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kollman's Engineering Consulting. All rights reserved. | <a href="#" style="color: #60a5fa;">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
